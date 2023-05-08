@@ -1,0 +1,19 @@
+.landing-page {
+    width: 100%;
+        max-width: 450px;
+    .landing-page-info {
+        font-weight: 400;
+        font-size: 16px;
+        color: $text-gray-400;
+    }
+
+    .btn-bookseat {
+        width: 100%;
+        max-width: 400px;
+        color: $white;
+    }
+    .landing-page-image{
+        margin-top: 60px;
+    }
+
+}

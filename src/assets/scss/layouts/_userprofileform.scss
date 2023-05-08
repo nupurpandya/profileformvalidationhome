@@ -1,0 +1,105 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+ margin: 0;
+}
+.userprofile-form{
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    .personal-info,.seat-info{
+        font-size: 16px;
+        font-weight: 600;
+        color: $text-muted;
+    }
+    .field-label{
+        font-weight: 600;
+        font-size: 16px;
+        color: #233550;
+        .mandatory-field{
+            color: #EA4234;
+        }
+    }
+    .city-floor{
+        .city-input,.floor-input{
+            width: 205px;
+        }
+    }
+    .column-seatno{
+        .column-input,.seatno-input{
+            width: 205px;
+        }
+    }
+    .floor-field,.seatno-field{
+        margin-left: 30px;
+    }
+    .designation-input,.modeofwork-input,.email-input,.phoneno-input,.project-input{
+        width: 440px;
+        background-color: $white;    
+    }
+    .project-input::placeholder,.email-input::placeholder,.phoneno-input::placeholder{
+        color: $text-gray-400;
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
+.form-header{
+    .form-header-title{
+        color: $text-primary;
+        font-weight: $font-weight-bold;
+        font-size: 22px;
+        padding: 22px 0 22px 0;
+    }
+}
+.user-details{
+    .uploadandeditimg{
+        position: relative;
+        .editimg{
+            height: 40px;
+            width: 40px;
+            position: absolute;
+            top: 77px;
+            left:77px;
+        }
+    }
+    .useremail{
+    color: $text-muted;
+    font-weight: 600;
+    font-size: 16px;
+    }
+    .username{
+        font-size: 22px;
+        font-weight: $font-weight-bold;
+        color: $text-primary;
+    }
+}
+.form-buttons{
+    box-shadow: 0 -4px 8px -8px #333;
+    .save-btn{
+        color: $white;
+        border-radius: 4px;
+        height: 50px;
+        width: 120px;
+    }
+}
+input[type="checkbox"]{
+    display: none;
+}
+.day{
+    height: 72px;
+    width: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#E5E7EA;
+    padding: 21px 11px;
+    color:$text-gray-400;
+    font-size:20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s; 
+}
+input[type="checkbox"]:checked ~ .day{
+    background-color: $primary;
+    color: $white;
+}

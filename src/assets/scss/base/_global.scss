@@ -1,0 +1,14 @@
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    font-family:$font-family-base;
+    background-color: $body-bg;
+
+}
+i{
+    cursor:pointer;
+    overflow: hidden;
+}
