@@ -1,0 +1,114 @@
+{
+  "user": [
+    {
+      "fname": "nupur",
+      "lname": "pandya",
+      "phoneno": 12333333333,
+      "designation": "BA",
+      "project": "fdsfsdfsdf",
+      "city": "Surat",
+      "floor": "2nd",
+      "column": "E",
+      "seatno": "5",
+      "modeofwork": "Work from home",
+      "days": [
+        "WED",
+        "THU"
+      ],
+      "id": 1
+    },
+    {
+      "fname": "diya",
+      "lname": "bulsara",
+      "phoneno": 234324234234,
+      "designation": "BA",
+      "project": "32",
+      "city": "Surat",
+      "floor": "2nd",
+      "column": "E",
+      "seatno": "4",
+      "modeofwork": "Hybrid",
+      "days": [
+        "MON",
+        "TUE",
+        "WED"
+      ],
+      "id": 2
+    },
+    {
+      "fname": "sdcsd",
+      "lname": "dssdf",
+      "phoneno": 324234342234,
+      "designation": "PMO",
+      "project": "fdsfsdfsdf",
+      "city": "Surat",
+      "floor": "2nd",
+      "column": "D",
+      "seatno": "3",
+      "modeofwork": "Hybrid",
+      "days": [
+        "MON",
+        "TUE",
+        "WED"
+      ],
+      "id": 3
+    },
+    {
+      "fname": "zxcas",
+      "lname": "asdasd",
+      "phoneno": 3424234234,
+      "designation": "PM",
+      "project": "fdsfsdfsdf",
+      "city": "Surat",
+      "floor": "1st",
+      "column": "C",
+      "seatno": "4",
+      "modeofwork": "Hybrid",
+      "days": [
+        "MON",
+        "WED"
+      ],
+      "id": 4
+    },
+    {
+      "image": "C:\\fakepath\\Capture.PNG",
+      "fname": null,
+      "lname": null,
+      "phoneno": 4534342323432,
+      "designation": "PM",
+      "project": "fdsfsdfsdf",
+      "city": "Surat",
+      "floor": "2nd",
+      "column": "D",
+      "seatno": "3",
+      "modeofwork": "Hybrid",
+      "days": [
+        "MON",
+        "TUE",
+        "WED"
+      ],
+      "id": 5
+    },
+   
+    {
+      "image": "C:\\fakepath\\HTML-Full-Form.jpg",
+      "fname": "",
+      "lname": null,
+      "phoneno": 45343423234328,
+      "designation": "PM",
+      "project": "fdsfsdfsdf",
+      "city": "Surat",
+      "floor": "2nd",
+      "column": "D",
+      "seatno": "3",
+      "modeofwork": "Regular",
+      "days": [
+        "MON",
+        "TUE",
+        "WED"
+      ],
+      "id": 7
+    }
+    
+  ]
+}

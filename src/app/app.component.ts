@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { UserService } from "./user.service";
 
 
 @Component({
@@ -10,12 +11,13 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 export class AppComponent implements OnInit{
   title = 'userformvalidation';
   userProfileForm !: FormGroup;
-  // days = ["MON", "TUE", "WED", "THU","FRI"];
-  constructor(private fb:FormBuilder){
+  days = ["MON", "TUE", "WED", "THU","FRI"];
+  constructor(private fb:FormBuilder, private userservice:UserService){
     
   }
   ngOnInit(): void {
     this.userProfileForm=this.fb.group({
+      'image':new FormControl(),
       'fname':new FormControl(),
       'lname':new FormControl(),
       'phoneno': new FormControl(),
@@ -26,12 +28,37 @@ export class AppComponent implements OnInit{
       'column':new FormControl(),
       'seatno':new FormControl(),
       'modeofwork':new FormControl(),
-      // 'days'   : this.fb.array([this.days]),
+      'days'   : this.fb.array([]),
       // 'days': new FormControl()
     })
   }
   submitUserData(){
     console.log(this.userProfileForm.value);
+    this.userservice.postUser(this.userProfileForm.value).subscribe(res=>res);
+    
+  }
+  getValue(e:any){
+    console.log(e.target);
+    
+  }
+  handleDays(e:any){
+    let dayarr=this.userProfileForm.get('days') as FormArray;
+    if(e.target.checked){
+      dayarr.push(new FormControl(e.target.value))
+      console.log(dayarr.controls);
+      
+    }
+    else{
+      let i=0;
+      dayarr.controls.forEach((l:any)=>{
+        if(l.value==e.target.value){
+          dayarr.removeAt(i);
+          return
+        }
+        i++;
+      })
+    }
+    console.log(e.target.value);
     
   }
   public designation = [

@@ -20,7 +20,13 @@
           <div class="d-flex align-items-center p-4 user-details">
             <div class="uploadandeditimg">
               <img src="./assets/images/upload-img.png" alt="Upload Img" class="uploadimg" />
-              <img src="./assets/images/edit-img.png" alt="Edit Img" class="editimg" />
+              <div>
+
+                <label for="fileToUpload">
+                  <img src="./assets/images/edit-img.png" alt="Edit Img" class="editimg" />
+                </label>
+                <input type="file" name="fileToUpload" id="fileToUpload"  class="d-none" formControlName="image"> 
+              </div>
             </div>
             <div class="ps-4">
               <input class="username border-0" value="Gregory" formControlName="fname" placeholder="Enter Name"/>
@@ -107,11 +113,17 @@
           <div class="ps-4">
             <label for="inputModeofWork" class="form-label field-label">Mode Of Work <span
                 class="mandatory-field">*</span></label>
-            <ng-select class="modeofwork-input" [items]="modeOfWork" bindLabel="name" bindValue="name" formControlName="modeofwork">
+            <ng-select class="modeofwork-input" [items]="modeOfWork" bindLabel="name" bindValue="name" formControlName="modeofwork" >
               <ng-option *ngFor="let item of modeOfWork" [value]="item.name" >{{
                 item.name
                 }}</ng-option>
             </ng-select>
+          </div>
+          <div *ngFor="let d of days">
+            <label for="{{d}}">
+              <input type="checkbox" name="" id="{{d}}" value="{{d}}" (change)="handleDays($event)" >
+              {{d}}
+            </label>
           </div>
           <!-- <div class="d-flex justify-content-between ps-4 pe-3">
             <label class="day-label">
