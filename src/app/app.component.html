@@ -30,11 +30,23 @@
             </div>
             <div class="ps-4">
               <input class="username border-0" value="Gregory" formControlName="fname" placeholder="Enter Name"/>
+              <div *ngIf="userProfileForm.errors?.['firstLetterCapitalError']">
+                First letter must be capital
+              </div>
+              <div *ngIf="userProfileForm.get('fname')?.errors?.['minlength']">
+                Minimum Two Letters
+              </div>
+              <div *ngIf="userProfileForm.get('fname')?.errors?.['maxlength']">
+                Maximum 100 Letters
+              </div>
+              <!-- <div *ngIf="userProfileForm.get('fname')?.errors?.['pattern']">
+                Should contain only one special character 
+              </div> -->
               <input class="username border-0" value="Williams" formControlName="lname" placeholder="Enter Last Name"/>
             </div>
           </div>
         </div>
-        <div class="d-flex flex-column justify-content-between gap-3 ">
+        <div class="d-flex flex-column justify-content-between gap-3">
           <h6 class="personal-info ms-3">PERSONAL INFORMATION</h6>
           <!-- Personal Information -->
           <div class="ps-4">
@@ -47,8 +59,20 @@
           <div class="ps-4">
             <label for="inputPhoneNo" class="form-label field-label">Phone No. <span
                 class="mandatory-field">*</span></label>
-            <input type="number" class="form-control phoneno-input" id="exampleInputPhoneNo"
+            <input type="text" class="form-control phoneno-input" id="exampleInputPhoneNo"
               placeholder="Enter Phone No." formControlName="phoneno"/>
+              <div *ngIf="userProfileForm.get('phoneno')?.errors?.['required'] && userProfileForm.get('phoneno')?.touched">
+              This field is required
+            </div>
+            <div *ngIf="userProfileForm.get('phoneno')?.errors?.['pattern']">
+              Only Numeric
+            </div>
+            <div *ngIf="userProfileForm.get('phoneno')?.errors?.['minlength']">
+              Only 10 digits allowed
+            </div>
+            <div *ngIf="userProfileForm.get('phoneno')?.errors?.['maxlength']">
+              Only 10 digits allowed
+            </div>
           </div>
   
           <div class="ps-4">
@@ -59,6 +83,9 @@
                 item.name
                 }}</ng-option>
             </ng-select>
+            <div *ngIf="userProfileForm.get('designation')?.errors?.['required'] && userProfileForm.get('designation')?.touched">
+              Please Select Designation
+            </div>
           </div>
   
           <div class="ps-4">
@@ -71,20 +98,26 @@
           <div class="d-flex ps-4 city-floor">
             <div class="mb-3">
               <label for="inputCity" class="form-label field-label">City <span class="mandatory-field">*</span></label>
-              <ng-select class="city-input" formControlName="city">
+              <ng-select class="city-input" formControlName="city" (change)="getCityValue($event)">
                 <ng-option *ngFor="let item of city" [value]="item.name" >{{
                   item.name
                   }} </ng-option>
               </ng-select>
+              <div *ngIf="userProfileForm.get('city')?.errors?.['required'] && userProfileForm.get('city')?.touched">
+                Please Select City
+              </div>
             </div>
   
             <div class="mb-3 floor-field">
               <label for="inputFloor" class="form-label field-label">Floor <span class="mandatory-field">*</span></label>
-              <ng-select class="floor-input" formControlName="floor">
+              <ng-select class="floor-input" formControlName="floor" [readonly]="disableEnableFloor" (change)="getFloorValue($event)">
                 <ng-option *ngFor="let item of floor" [value]="item.name" f>{{
                   item.name
                   }}</ng-option>
               </ng-select>
+              <div *ngIf="userProfileForm.get('floor')?.errors?.['required'] && userProfileForm.get('floor')?.touched">
+                Please Select Floor
+              </div>
             </div>
           </div>
   
@@ -92,39 +125,47 @@
             <div class="mb-3">
               <label for="inputColumn" class="form-label field-label">Column <span
                   class="mandatory-field">*</span></label>
-              <ng-select class="column-input" formControlName="column">
+              <ng-select class="column-input" formControlName="column" [readonly]="disableEnableColumn" (change)="getColumnValue($event)">
                 <ng-option *ngFor="let item of column" [value]="item.name" >{{
                   item.name
                   }}</ng-option>
               </ng-select>
+              <div *ngIf="userProfileForm.get('column')?.errors?.['required'] && userProfileForm.get('column')?.touched">
+                Please Select Column
+              </div>
             </div>
   
             <div class="mb-3 seatno-field">
               <label for="inputSeatNo" class="form-label field-label">Seat No. <span
                   class="mandatory-field">*</span></label>
-              <ng-select class="seatno-input" formControlName="seatno">
+              <ng-select class="seatno-input" formControlName="seatno" [readonly]="disableEnableSeatNo">
                 <ng-option *ngFor="let item of seatNo" [value]="item.name" >{{
                   item.name
                   }}</ng-option>
               </ng-select>
+              <div *ngIf="userProfileForm.get('seatno')?.errors?.['required'] && userProfileForm.get('seatno')?.touched">
+                Please Select SeatNo
+              </div>
             </div>
           </div>
           <!-- Mode Of Work -->
           <div class="ps-4">
             <label for="inputModeofWork" class="form-label field-label">Mode Of Work <span
                 class="mandatory-field">*</span></label>
-            <ng-select class="modeofwork-input" [items]="modeOfWork" bindLabel="name" bindValue="name" formControlName="modeofwork" >
-              <ng-option *ngFor="let item of modeOfWork" [value]="item.name" >{{
+            <ng-select class="modeofwork-input" [items]="modeOfWork" bindLabel="name" bindValue="name" formControlName="modeofwork" (change)="hey($event)">
+              <ng-option *ngFor="let item of modeOfWork" [value]="item.name"   >{{
                 item.name
                 }}</ng-option>
             </ng-select>
           </div>
-          <div *ngFor="let d of days">
+          <div *ngIf="hideshowdays">
+          <div *ngFor="let d of days" >
             <label for="{{d}}">
               <input type="checkbox" name="" id="{{d}}" value="{{d}}" (change)="handleDays($event)" >
               {{d}}
             </label>
           </div>
+        </div>
           <!-- <div class="d-flex justify-content-between ps-4 pe-3">
             <label class="day-label">
               <input type="checkbox"/>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "./user.service";
-
+import { firstLetterUpperCase } from "./Validations/firstLetterUppercase"
 
 @Component({
   selector: 'app-root',
@@ -12,33 +12,65 @@ export class AppComponent implements OnInit{
   title = 'userformvalidation';
   userProfileForm !: FormGroup;
   days = ["MON", "TUE", "WED", "THU","FRI"];
+  disableEnableFloor:boolean=true;
+  disableEnableSeatNo:boolean=true;
+  disableEnableColumn:boolean=true;
+  hideshowdays:boolean=false;
   constructor(private fb:FormBuilder, private userservice:UserService){
     
   }
   ngOnInit(): void {
-    this.userProfileForm=this.fb.group({
+    this.userProfileForm=new FormGroup({
       'image':new FormControl(),
-      'fname':new FormControl(),
+      'fname':new FormControl(null,[Validators.minLength(2),Validators.maxLength(100),Validators.pattern(" /^[ A-Za-z0-9_@./#&+-]*$/.")]),
       'lname':new FormControl(),
-      'phoneno': new FormControl(),
-      'designation':new FormControl(),
-      'project':new FormControl(),
-      'city':new FormControl(),
-      'floor': new FormControl(),
-      'column':new FormControl(),
-      'seatno':new FormControl(),
-      'modeofwork':new FormControl(),
-      'days'   : this.fb.array([]),
+      'phoneno': new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/),Validators.minLength(10),Validators.maxLength(10)]),
+      'designation':new FormControl(null,Validators.required),
+      'project':new FormControl(null,Validators.required),
+      'city':new FormControl(null,Validators.required),
+      'floor': new FormControl(null,Validators.required),
+      'column':new FormControl(null,Validators.required),
+      'seatno':new FormControl(null,Validators.required),
+      'modeofwork':new FormControl(null,Validators.required),
+      'days'   : this.fb.array([])
+   
       // 'days': new FormControl()
-    })
+    },
+    [firstLetterUpperCase('fname')],
+    )
   }
   submitUserData(){
     console.log(this.userProfileForm.value);
     this.userservice.postUser(this.userProfileForm.value).subscribe(res=>res);
     
   }
+  getCityValue(e:any){
+    if(e){
+      this.disableEnableFloor=false;
+    }
+  }
+  getFloorValue(e:any){
+    if(e){
+      this.disableEnableColumn=false;
+    }
+  }
+  getColumnValue(e:any){
+    if(e){
+      this.disableEnableSeatNo=false;
+    }
+  }
   getValue(e:any){
     console.log(e.target);
+    
+  }
+  hey(e:any){
+    if(e.name=="Hybrid"){
+      this.hideshowdays=true;
+    }
+    else{
+      this.hideshowdays=false;
+    }
+    console.log(e.name);
     
   }
   handleDays(e:any){
